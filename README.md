@@ -10,6 +10,6 @@ requests, json
 ### Notice
 on versions older than Python 3.9.1, a dependency might be missing. </br>
 should the script fail to run, run fix-deps.ps1 to repair dependencies. </br>
-if that script also fails, manually install pip and run `pip install requests`.
+alternatively, just manually install pip and run `pip install requests`.
 
 ###### tested for Python 3.9.1.
