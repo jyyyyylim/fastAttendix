@@ -1,10 +1,10 @@
 # instAttendix
-sign your attendance 40 microseconds quicker, powered by HTTP forgery.
+sign your attendance 40 microseconds quicker, powered by HTTP forgery. </br>aims to do away with that another browser tab.
 
 ## Usage
-Run init.cmd. You will need to provide your login credentials on first use.
+run init.cmd. you will need to provide your login credentials on first use.
 
 ## Deps
 requests, json
 
-###### Tested for Python 3.9.1.
+###### tested for Python 3.9.1.
