@@ -6,20 +6,35 @@ spoofAgent='Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/5
 ContentType='application/x-www-form-urlencoded'
 
 ## USER/PWD WHILE LOOP. ##
+
 #>> AUTH HANDSHAKE PARTITION 
-#1> CREDENTIALS POST SENT. TGT CREATED ON N201. CRED ENCODING DISREGARDED
-
-authStatus='nul'
-while authStatus!=int(201):
-    usr=str(input('Enter your TP. no...   '))
-    pwd=str(input('Enter your password...   '))
+#>> CREDENTIALS POST SENT. TGT CREATED ON N201. CRED ENCODING DISREGARDED
+try:
+    credCheck=open('./settings.json','r')
+    pass
+    credCheck.close()
+except IOError: 
+    authStatus='nul'
+    if authStatus=='nul': print('settings.json not found. Defaulting to manual entry\n')
+    while authStatus!=int(201):
+        usr=str(input('Enter your TP. no...   '))
+        pwd=str(input('Enter your password...   '))
+        HTTPPost=s.post('https://cas.apiit.edu.my/cas/v1/tickets',data={"username": usr, "password": pwd})
+        authStatus=HTTPPost.status_code
+        if authStatus!=201: print('\n\nSomething went wrong. Try again.'+'\n<'+'RESPONSE-'+ str(HTTPPost.status_code)+'>'  )
+        else: print('\nSuccess!')
+    credentials={"secrets":{"usr": usr,"pwd": pwd}}
+    with open('settings.json','w') as optFile:
+        optFile.write(json.dumps(credentials))
+    print('Credentials saved.')
+else:
+    with open('settings.json','r') as optFile:
+        usr=json.load(optFile)['secrets']['usr']
+    with open('settings.json','r') as optFile:
+        pwd=json.load(optFile)['secrets']['pwd']
+    #apparently the fileObject closes itself after every read lmfao
     HTTPPost=s.post('https://cas.apiit.edu.my/cas/v1/tickets',data={'username': usr, 'password': pwd})
-    authStatus=HTTPPost.status_code
-    if authStatus!=201: print('\n\nSomething went wrong. Try again.'+'\n<'+'RESPONSE-'+ str(HTTPPost.status_code)+'>'  )
-    else: print('\nSuccess!')
-
-#settingsJsonIOStream=open('settings.json','rt')
-
+    print('Previous session detected, reusing saved credentials.')
 
 
 ############# CREDENTIALS APPROVED, TGT LINK CREATED ##########################
@@ -64,4 +79,4 @@ feedbackMessage=((json.loads(str(attendUpdate.text))['errors'])[0])
 #print(json.loads(str(attendUpdate.text)))
 print(feedbackMessage['message'])
 
-###!!! ON FAIL, RESUBMIT SERVICE QUERY (ATTENDIX)
+###!!! ON FAIL, RESUBMIT SERVICE QUERY (ATTENDIX). ANALYZE BY MONDAY
