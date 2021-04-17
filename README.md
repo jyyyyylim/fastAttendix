@@ -5,11 +5,11 @@ sign your attendance 40 microseconds quicker.<sub><sub>heh.</sub></sub> powered 
 run init.cmd. you will need to provide your login credentials on first use. </br>this should be able to work on preinstalled libraries. 
 
 ## Deps
-requests, json 
+requests
 
 ### Notice
 on versions older than Python 3.9.1, a dependency might be missing. </br>
-should the script fail to run, run fix-deps.cmd AS ADMINISTRATOR to repair dependencies. </br>you might also need to run `set-executionpolicy unrestricted` in powershell.</br></br>
-alternatively, just manually install pip and run `pip install requests`.
+should the main program fail to run, run fix-deps.cmd AS ADMINISTRATOR to repair dependencies. </br>you might also need to run `set-executionpolicy unrestricted` in powershell.</br></br>
+alternatively, just run `pip install requests`.
 
 ###### tested for Python 3.9.1.
