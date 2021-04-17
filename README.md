@@ -8,7 +8,7 @@ run init.cmd. you will need to provide your login credentials on first use. </br
 requests, json 
 
 ### Notice
-should the script fail to run, run fix-deps.ps1 to repair dependencies.
+should the script fail to run, run fix-deps.ps1 to repair dependencies. </br>
 if the script also fails, manually install pip and run `pip install requests`.
 
 ###### tested for Python 3.9.1.
