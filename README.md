@@ -8,6 +8,7 @@ run init.cmd. you will need to provide your login credentials on first use. </br
 requests, json 
 
 ### Notice
+on versions older than Python 3.9.1, a dependency might be missing. </br>
 should the script fail to run, run fix-deps.ps1 to repair dependencies. </br>
 if the script also fails, manually install pip and run `pip install requests`.
 
