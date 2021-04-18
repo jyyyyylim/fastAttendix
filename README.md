@@ -12,4 +12,6 @@ on versions older than Python 3.9.1, a dependency might be missing. </br>
 should the main program fail to run, run fix-deps.cmd AS ADMINISTRATOR to repair dependencies. </br>you might also need to run `set-executionpolicy unrestricted` in powershell.</br></br>
 alternatively, just run `pip install requests`.
 
+this is NOT a final release.
+
 ###### tested for Python 3.9.1.
