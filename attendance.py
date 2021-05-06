@@ -69,9 +69,9 @@ while resubmitLoop==1:
     payload={"operationName":"updateAttendance","variables":{"otp":code},"query": "mutation updateAttendance($otp: String!) {\n  updateAttendance(otp: $otp) {\n    id\n    attendance\n    classcode\n    date\n    startTime\n    endTime\n    classType\n    __typename\n  }\n}\n"}
     attendUpdate=s.post(endpoint,headers={"host": 'attendix.apu.edu.my', "path": '/graphql', "content-type": graphqlContent, "sec-fetch-dest": 'empty', "sec-fetch-mode": 'cors', "sec-fetch-site": 'same-site', "ticket": attendix, "x-amz-user-agent": agent, "x-api-key": key},json=payload)
     try:
-        classtyp=str(json.loads(attendUpdate.text)['data']['updateAttendance']['classType'])
-        feedbackMessage="Success! Logged attendance for"+classtyp+': '+json.loads(str(attendUpdate.text))['data']['updateAttendance']['classcode']
-        exit()
-    except:
         feedbackMessage=((json.loads(str(attendUpdate.text))['errors'])[0])
         print(feedbackMessage['message']+'\n')
+    except:
+        classtyp=str(json.loads(attendUpdate.text)['data']['updateAttendance']['classType'])
+        feedbackMessage="Success! Logged attendance for "+classtyp+': '+json.loads(str(attendUpdate.text))['data']['updateAttendance']['classcode']
+        exit()
