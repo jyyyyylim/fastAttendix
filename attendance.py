@@ -74,4 +74,5 @@ while resubmitLoop==1:
     except:
         classtyp=str(json.loads(attendUpdate.text)['data']['updateAttendance']['classType'])
         feedbackMessage="Success! Logged attendance for "+classtyp+': '+json.loads(str(attendUpdate.text))['data']['updateAttendance']['classcode']
+        print(feedbackMessage)
         exit()
