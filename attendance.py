@@ -57,7 +57,7 @@ key='da2-dv5bqitepbd2pmbmwt7keykfg4'
 while resubmitLoop==1:
     while validFlag!=1:
         try:
-            code=int(input('Enter the 3-digit passcode. '))
+            code=str(input('Enter the 3-digit passcode. '))
             if len(str(code))!=3:
                 raise lenError("Input chars >3")
             break
