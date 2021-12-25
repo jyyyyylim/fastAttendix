@@ -1,5 +1,6 @@
 import requests
 import json
+from datetime import datetime
 
 #>> INITIALIZING SESSION
 s=requests.Session()
@@ -7,6 +8,17 @@ ContentType='application/x-www-form-urlencoded'
 
 #>> initializing loop flags
 authStatus,resubmitLoop,code,validFlag='nul',1,'',0
+
+#>> init logfile if not present, lazy code reuse
+requirements=['hist.log']
+for files in requirements:
+    try:
+        name=open(files,'r')
+        pass
+        name.close()
+    except IOError:
+        with open(files,'x') as name:
+            pass
 
 #>> CREDENTIALS POST SENT. TGT CREATED ON N201. CRED ENCODING DISREGARDED
 try:
@@ -47,11 +59,12 @@ print('Logged in as: '+str(json.loads(authTicket.text)['serviceResponse']['authe
 endpoint='https://attendix.apu.edu.my/graphql'
 graphqlContent='application/json'
 
+ins, o= str('hm>!hz9n}exi|nh>|ana{x;giugjk8'), 12
+ek= "".join(chr(o^ord(n)) for n in ins)
 accessCtlReqHeaders='content-type,ticket,x-amz-user-agent,x-api-key'
 accessCtlReqMethod='POST'
 CtlReq=s.options(endpoint,headers={"host": 'attendix.apu.edu.my',"path": '/graphql' , "sec-fetch-dest": 'empty', "sec-fetch-mode": 'cors', "sec-fetch-site": 'same-site', "access-control-request-headers": accessCtlReqHeaders, "access-control-request-method": accessCtlReqMethod})
 agent='aws-amplify/1.0.1'
-key='da2-dv5bqitepbd2pmbmwt7keykfg4'
 
 ## catch invalid attendance code, saving invalid http calls. breaks on valid hit
 while resubmitLoop==1:
@@ -67,12 +80,14 @@ while resubmitLoop==1:
     # the fuck is this? at least it works only after this POST
     attendix=s.post(logonTicket,headers={"content-type": ContentType},params={'service': 'https://api.apiit.edu.my/attendix'}).text
     payload={"operationName":"updateAttendance","variables":{"otp":code},"query": "mutation updateAttendance($otp: String!) {\n  updateAttendance(otp: $otp) {\n    id\n    attendance\n    classcode\n    date\n    startTime\n    endTime\n    classType\n    __typename\n  }\n}\n"}
-    attendUpdate=s.post(endpoint,headers={"host": 'attendix.apu.edu.my', "path": '/graphql', "content-type": graphqlContent, "sec-fetch-dest": 'empty', "sec-fetch-mode": 'cors', "sec-fetch-site": 'same-site', "ticket": attendix, "x-amz-user-agent": agent, "x-api-key": key},json=payload)
+    attendUpdate=s.post(endpoint,headers={"host": 'attendix.apu.edu.my', "path": '/graphql', "content-type": graphqlContent, "sec-fetch-dest": 'empty', "sec-fetch-mode": 'cors', "sec-fetch-site": 'same-site', "ticket": attendix, "x-amz-user-agent": agent, "x-api-key": ek},json=payload)
     try:
         feedbackMessage=((json.loads(str(attendUpdate.text))['errors'])[0])
         print(feedbackMessage['message']+'\n')
     except:
         classtyp=str(json.loads(attendUpdate.text)['data']['updateAttendance']['classType'])
-        feedbackMessage="Success! Logged attendance for "+classtyp+': '+json.loads(str(attendUpdate.text))['data']['updateAttendance']['classcode']
+        feedbackMessage="Success: Logged attendance for "+classtyp+': '+json.loads(str(attendUpdate.text))['data']['updateAttendance']['classcode']
+        with open('hist.log','w') as log:
+            log.write(datetime.now()+'\n'+feedbackMessage+'\n\n')
         print(feedbackMessage)
         exit()
