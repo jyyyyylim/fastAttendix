@@ -5,7 +5,8 @@ sign your attendance 40 microseconds quicker.<sub><sub>heh.</sub></sub> powered 
 run init.cmd. you will need to provide your login credentials on first use. </br>this should be able to work on preinstalled libraries. 
 
 ## Deps
-requests
+\> stdlib </br>
+\> *requests*
 
 ### Notice
 on versions older than Python 3.9.1, a dependency might be missing. </br>
