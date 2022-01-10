@@ -5,7 +5,7 @@ sign your attendance 40 microseconds quicker.<sub><sub>heh.</sub></sub> powered 
 run init.cmd. you will need to provide your login credentials on first use. </br>this should be able to work on preinstalled libraries. 
 
 ## Deps
-\> stdlib </br>
+\> stdlib: json, datetime </br>
 \> *requests*
 
 ### Notice
