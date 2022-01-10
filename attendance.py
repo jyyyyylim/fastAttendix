@@ -88,6 +88,6 @@ while resubmitLoop==1:
         classtyp=str(json.loads(attendUpdate.text)['data']['updateAttendance']['classType'])
         feedbackMessage="Success: Logged attendance for "+classtyp+': '+json.loads(str(attendUpdate.text))['data']['updateAttendance']['classcode']
         with open('hist.log','w') as log:
-            log.write(datetime.now()+'\n'+feedbackMessage+'\n\n')
+            log.write(str(datetime.now())+'\n'+feedbackMessage+'\n\n')
         print(feedbackMessage)
         exit()
