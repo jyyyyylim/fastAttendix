@@ -17,6 +17,4 @@ known issue(s): </br>
 occassional lockup/connection errors on start (cause untraceable- likely serverside)</br>
 **DO NOT** spam/restart the script too much or youll be throttled
 
-this is NOT a final release.
-
 ###### tested for Python 3.9.1.
