@@ -12,7 +12,7 @@ attendance logging is stored in the `hist.log` file in script root location. use
 
 ### Notice
 there is no known limit on how many "invalid" otp inputs get accepted by the server.</br>
-in this regard serverside throttling is entirely at the discretion of the backend </br></br>
+in this regard serverside throttling is entirely at the discretion of the backend as long as rate limits (also unknown) arent violated</br></br>
 on versions older than Python 3.9.1, a dependency might be missing. </br>
 should the main program fail to run, run fix-deps.cmd AS ADMINISTRATOR to repair dependencies. </br>you might also need to run `set-executionpolicy unrestricted` in powershell.</br></br>
 alternatively, just run `pip install requests`
