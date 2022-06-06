@@ -14,7 +14,7 @@ should the main program fail to run, run fix-deps.cmd AS ADMINISTRATOR to repair
 alternatively, just run `pip install requests`.
 
 known issue(s): </br>
-occassional lockup/connection errors on start (cause untraceable- likely serverside)</br>
+occassional lockup/connection errors on start (cause untraceable- likely serverside). attempt to rectify by restarting script</br>
 **DO NOT** spam/restart the script too much or youll be throttled
 
 ###### tested for Python 3.9.1.
