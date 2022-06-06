@@ -4,6 +4,8 @@ sign your attendance 40 microseconds quicker.<sub><sub>heh.</sub></sub> powered 
 ## Usage
 run init.cmd. you will need to provide your login credentials on first use. </br>this should be able to work on preinstalled libraries. 
 
+attendance logging is stored in the `hist.log` file in script root location. useful for audits
+
 ## Deps
 \> stdlib: json, datetime </br>
 \> *requests*
