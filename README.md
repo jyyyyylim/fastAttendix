@@ -21,4 +21,4 @@ known issue(s): </br>
 occassional lockup/connection errors on start (unreproducible- likely serverside). attempt to rectify by reloading</br>
 **DO NOT** spam/restart the script too much unless you want to get server throttled
 
-###### tested for Python 3.9.1.
+###### tested for >3.9.1.
